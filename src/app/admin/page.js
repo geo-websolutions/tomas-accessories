@@ -154,7 +154,28 @@ export default function AddProductForm() {
 
       // Show success message
       showModal('نجاح', 'تم إضافة المنتج بنجاح', 2000)
-      // Removed the automatic redirect to /products
+      
+      // Reset the form after successful submission
+      setFormData({
+        name: '',
+        description: '',
+        price: '',
+        category: '',
+        subcategory: '',
+        imageUrl: '',
+        featured: false,
+        hasDiscount: false,
+        discountPrice: ''
+      })
+      
+      // Clear the selected file
+      setSelectedFile(null)
+      
+      // Revoke the object URL if it exists
+      if (formData.imageUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(formData.imageUrl)
+      }
+      
     } catch (error) {
       console.error('Error:', error)
       showModal('خطأ', 'حدث خطأ أثناء إضافة المنتج')
