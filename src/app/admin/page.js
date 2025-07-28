@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { addDoc, collection, serverTimestamp, updateDoc } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
@@ -32,6 +32,14 @@ export default function AddProductForm() {
     hasDiscount: false,
     discountPrice: ''
   })
+  useEffect(() => {
+    return () => {
+      // Clean up object URLs when component unmounts
+      if (formData.imageUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(formData.imageUrl)
+      }
+    }
+  }, [formData.imageUrl])
 
   const showModal = (title, content, timerDuration = 0) => {
     setModal({
@@ -92,11 +100,16 @@ export default function AddProductForm() {
     }
 
     try {
+      // Revoke previous URL if exists
+      if (formData.imageUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(formData.imageUrl)
+      }
+
       const webpFile = await convertImageToWebP(file, 80)
       setSelectedFile(webpFile)
       
-      // Create preview URL
-      const previewUrl = URL.createObjectURL(file)
+      // Create preview URL from the WebP file instead of original
+      const previewUrl = URL.createObjectURL(webpFile)
       setFormData(prev => ({ ...prev, imageUrl: previewUrl }))
     } catch (error) {
       showModal('خطأ في تحويل الصورة', 'حدث خطأ أثناء معالجة الصورة')
@@ -401,7 +414,9 @@ export default function AddProductForm() {
                       {/* Image Preview */}
                       <div className="relative h-64 w-full overflow-hidden">
                         <img 
-                          src={formData.imageUrl} 
+                          src={formData.imageUrl}
+                          crossOrigin='anonymous'
+                          onLoad={() => URL.revokeObjectURL(formData.imageUrl)}
                           alt="Product preview" 
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
