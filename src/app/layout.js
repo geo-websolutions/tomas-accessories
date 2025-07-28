@@ -1,4 +1,5 @@
 import "./globals.css";
+import NavBar from "@/components/NavBar";
 
 export const metadata = {
   title: 'Tomas Silver & Accessories | Home',
@@ -28,15 +29,13 @@ export const metadata = {
     description: 'اكتشف مجموعتنا الفريدة من الاكسسوارات المصنوعة من الذهب الصينى و الفضة عيار 925.',
     images: [''],
   },
-  other: {
-    'font-preload': 'https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap',
-  },
 }
 
 export default function RootLayout({ children }) {
   return (
     <html>
       <body>
+        <NavBar />
         {children}
       </body>
     </html>

@@ -85,3 +85,64 @@ export async function batchResizeImages(files, options) {
     files.map(file => resizeImage(file, options.width, options.height, options))
   )
 }
+
+/**
+ * Converts an image file to WebP format while maintaining original dimensions
+ * @param {File} imageFile - The image file to convert (JPEG, PNG, etc.)
+ * @param {number} [quality=80] - WebP quality (0-100)
+ * @returns {Promise<Blob>} Promise that resolves with the WebP Blob
+ */
+export async function convertImageToWebP(imageFile, quality = 80) {
+  return new Promise((resolve, reject) => {
+    // Validate input
+    if (!(imageFile instanceof File)) {
+      reject(new Error('Input must be a File object'));
+      return;
+    }
+    
+    if (!imageFile.type.startsWith('image/')) {
+      reject(new Error('File must be an image'));
+      return;
+    }
+
+    if (quality < 0 || quality > 100) {
+      reject(new Error('Quality must be between 0 and 100'));
+      return;
+    }
+
+    const img = new Image();
+    const url = URL.createObjectURL(imageFile);
+    
+    img.onload = () => {
+      // Create canvas with original dimensions
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      
+      // Draw image on canvas
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      
+      // Convert to WebP
+      canvas.toBlob(
+        (blob) => {
+          URL.revokeObjectURL(url);
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error('Failed to convert image to WebP'));
+          }
+        },
+        'image/webp',
+        quality / 100
+      );
+    };
+    
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('Failed to load image'));
+    };
+    
+    img.src = url;
+  });
+}

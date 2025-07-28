@@ -10,36 +10,120 @@ export default function Home() {
       category: "bracelet",
       name: "أساور",
       items: [
-        { id: 1, name: "سوار الفضة الماسي" },
-        { id: 2, name: "سوار الذهب الصيني" },
-        { id: 3, name: "سوار مزيج الذهب والفضة" }
+        { 
+          id: 1, 
+          name: "سوار الفضة الماسي",
+          price: 450,
+          hasDiscount: true,
+          discountPrice: 380,
+          description: "سوار أنيق من الفضة عيار 925 مرصع بأحجار الماس الصغيرة، تصميم كلاسيكي يناسب جميع المناسبات"
+        },
+        { 
+          id: 2, 
+          name: "سوار الذهب الصيني",
+          price: 650,
+          hasDiscount: false,
+          discountPrice: 650,
+          description: "سوار من الذهب الصيني عيار 18 قيراط بتصميم عصري أنيق، يتميز بمتانته ولمعانه الدائم"
+        },
+        { 
+          id: 3, 
+          name: "سوار مزيج الذهب والفضة",
+          price: 550,
+          hasDiscount: true,
+          discountPrice: 490,
+          description: "تحفة فنية تجمع بين الذهب والفضة في تصميم متناغم، قطعة فريدة تلفت الأنظار"
+        }
       ]
     },
     {
       category: "earring",
       name: "أقراط",
       items: [
-        { id: 1, name: "قرط الفضة المرصع" },
-        { id: 2, name: "قرط الذهب الصيني" },
-        { id: 3, name: "قرط مزيج الذهب والفضة" }
+        { 
+          id: 1, 
+          name: "قرط الفضة المرصع",
+          price: 350,
+          hasDiscount: false,
+          discountPrice: 350,
+          description: "أقراط من الفضة عيار 925 مع زخارف مرصعة بأحجار صغيرة، خفيفة الوزن ومريحة للارتداء"
+        },
+        { 
+          id: 2, 
+          name: "قرط الذهب الصيني",
+          price: 580,
+          hasDiscount: true,
+          discountPrice: 520,
+          description: "أقراط من الذهب الصيني عيار 18 قيراط بتصميم كلاسيكي أنيق، تضيف لمسة من البريق لإطلالتك"
+        },
+        { 
+          id: 3, 
+          name: "قرط مزيج الذهب والفضة",
+          price: 420,
+          hasDiscount: true,
+          discountPrice: 370,
+          description: "تصميم مبتكر يجمع بين الذهب والفضة في تناغم جميل، مناسب للارتداء اليومي والمناسبات"
+        }
       ]
     },
     {
       category: "necklace",
       name: "قلادات",
       items: [
-        { id: 1, name: "قلادة الفضة المنقوشة" },
-        { id: 2, name: "قلادة الذهب الصيني" },
-        { id: 3, name: "قلادة مزيج الذهب والفضة" }
+        { 
+          id: 1, 
+          name: "قلادة الفضة المنقوشة",
+          price: 520,
+          hasDiscount: false,
+          discountPrice: 520,
+          description: "قلادة من الفضة عيار 925 مع نقشات يدوية دقيقة، قلادة مميزة تتناسب مع جميع الأذواق"
+        },
+        { 
+          id: 2, 
+          name: "قلادة الذهب الصيني",
+          price: 780,
+          hasDiscount: true,
+          discountPrice: 700,
+          description: "قلادة من الذهب الصيني عيار 18 قيراط بتصميم عصري فاخر، قطعة مركزية تلفت الأنظار"
+        },
+        { 
+          id: 3, 
+          name: "قلادة مزيج الذهب والفضة",
+          price: 620,
+          hasDiscount: true,
+          discountPrice: 550,
+          description: "تحفة فنية تجمع بين الذهب والفضة في تصميم متناسق، قلادة متعددة الاستخدامات"
+        }
       ]
     },
     {
       category: "ring",
       name: "خواتم",
       items: [
-        { id: 1, name: "خاتم الفضة الكلاسيكي" },
-        { id: 2, name: "خاتم الذهب الصيني" },
-        { id: 3, name: "خاتم مزيج الذهب والفضة" }
+        { 
+          id: 1, 
+          name: "خاتم الفضة الكلاسيكي",
+          price: 380,
+          hasDiscount: true,
+          discountPrice: 320,
+          description: "خاتم من الفضة عيار 925 بتصميم كلاسيكي أنيق، مناسب للرجال والنساء"
+        },
+        { 
+          id: 2, 
+          name: "خاتم الذهب الصيني",
+          price: 680,
+          hasDiscount: false,
+          discountPrice: 680,
+          description: "خاتم من الذهب الصيني عيار 18 قيراط بتصميم عصري، قطعة فاخرة تدوم طويلاً"
+        },
+        { 
+          id: 3, 
+          name: "خاتم مزيج الذهب والفضة",
+          price: 490,
+          hasDiscount: true,
+          discountPrice: 420,
+          description: "تصميم مبتكر يجمع بين الذهب والفضة في خاتم واحد، قطعة مميزة تناسب جميع المناسبات"
+        }
       ]
     }
   ];
@@ -162,7 +246,7 @@ export default function Home() {
           className="text-4xl text-center font-bold mb-20"
         >
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-300">
-            تشكيلاتنا
+            تشكيلاتنا الفاخرة
           </span>
         </motion.h2>
 
@@ -183,8 +267,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {product.items.map((item) => (
-                <motion.a
-                  href={`/products/${product.category}/${item.id}`}
+                <motion.div
                   key={`${product.category}-${item.id}`}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -198,51 +281,88 @@ export default function Home() {
                     y: -15,
                     transition: { duration: 0.3 }
                   }}
-                  className="block group relative rounded-2xl overflow-hidden bg-gray-800 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-500"
+                  className="group relative rounded-2xl overflow-hidden bg-gray-800 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-500"
                 >
+                  {/* Discount Ribbon */}
+                  {item.hasDiscount && (
+                    <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full font-bold text-xs z-10 rotate-12 shadow-lg">
+                      خصم {Math.round(((item.price - item.discountPrice) / item.price) * 100)}%
+                    </div>
+                  )}
+
                   {/* Image with overlay effect */}
-                  <div className="relative h-96 w-full overflow-hidden">
+                  <div className="relative h-80 w-full overflow-hidden">
                     <Image
                       src={`/assets/images/female-${product.category}-0${item.id}.webp`}
                       alt={item.name}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/50 to-transparent"></div>
                   </div>
 
-                  {/* Product info with slide-up effect */}
-                  <motion.div
-                    initial={{ y: 30, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    whileHover={{ y: -10 }}
-                    transition={{ duration: 0.4 }}
-                    className="absolute bottom-0 left-0 right-0 p-6"
-                  >
-                    <h4 className="text-2xl font-bold text-white mb-2">{item.name}</h4>
-                    <div className="flex items-center">
-                      <span className="text-yellow-400 font-medium">عرض التفاصيل</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 mr-2 text-yellow-400 transition-transform group-hover:translate-x-1"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
+                  {/* Product info container */}
+                  <div className="p-6">
+                    {/* Title with gold accent */}
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-xl font-bold text-white mb-2 flex items-center"
+                    >
+                      <span className="w-4 h-4 bg-yellow-500 rounded-full mr-3"></span>
+                      {item.name}
+                    </motion.h3>
+                    
+                    {/* Description with fade-in */}
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="text-gray-300 text-sm mb-4 leading-relaxed"
+                    >
+                      {item.description}
+                    </motion.p>
+                    
+                    {/* Price and CTA */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="flex items-center justify-between mt-4"
+                    >
+                      <div>
+                        {item.hasDiscount ? (
+                          <>
+                            <span className="text-gray-400 text-sm line-through mr-2">
+                              {item.price} ج.م
+                            </span>
+                            <span className="text-yellow-400 font-bold">
+                              {item.discountPrice} ج.م
+                            </span>
+                          </>
+                        ) : (
+                          <span className="text-yellow-400 font-bold">
+                            {item.price} ج.م
+                          </span>
+                        )}
+                      </div>
+                      
+                      <a 
+                        href={`/products/${product.category}/${item.id}`}
+                        className="relative px-4 py-2 bg-yellow-600 text-gray-900 text-sm font-medium rounded-full overflow-hidden transition-all hover:bg-yellow-500"
                       >
-                        <path
-                          fillRule="evenodd"
-                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </motion.div>
+                        <span className="relative z-10">اشتري الآن</span>
+                        <span className="absolute inset-0 bg-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                      </a>
+                    </motion.div>
+                  </div>
 
                   {/* Shine effect on hover */}
                   <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute top-0 -left-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/20 group-hover:animate-shine transition-all duration-500"></div>
                   </div>
-                </motion.a>
+                </motion.div>
               ))}
             </div>
           </div>
