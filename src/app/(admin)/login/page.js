@@ -53,7 +53,7 @@ export default function LoginPage() {
       if (supabaseError) throw supabaseError
 
       // If both auths succeed, redirect to dashboard
-      router.push('/admin')
+      router.push('/add-product')
     } catch (err) {
       console.error('Login error:', err)
       setError(err.message || 'Failed to login. Please check your credentials.')
