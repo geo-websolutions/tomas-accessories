@@ -17,22 +17,17 @@ export default function LoginPage() {
   // Check if user is already logged in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, redirect to admin
-        router.push('/add-product')
-      } else {
-        // Also check Supabase session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-          if (session) {
-            router.push('/add-product')
-          } else {
-            setAuthChecking(false)
-          }
-        })
-      }
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        // Only redirect if BOTH auth systems agree
+        if (user && session) {
+          router.push('/add-product')
+        } else {
+          setAuthChecking(false)
+        }
+      })
     })
 
-    return () => unsubscribe()
+    return unsubscribe
   }, [router])
 
   const handleLogin = async (e) => {
