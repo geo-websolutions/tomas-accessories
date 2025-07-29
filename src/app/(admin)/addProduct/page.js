@@ -2,16 +2,17 @@
 import { useState, useRef, useEffect } from 'react'
 import { addDoc, collection, serverTimestamp, updateDoc } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
-import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useAuthGuard } from '@/hooks/useAuthGaurd'
 import { convertImageToWebP } from '@/utils/imageResizer'
 import CustomModal from '@/components/Modal'
+import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { motion } from 'framer-motion'
+import { LogoutButton } from '@/components/LogOutButton'
+
 
 export default function AddProductForm() {
-  useAuthGuard()
-  const router = useRouter()
+  const { isLoading } = useAuthGuard()
   const fileInputRef = useRef(null)
   const [loading, setLoading] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
@@ -131,11 +132,20 @@ export default function AddProductForm() {
     setLoading(true)
 
     try {
+      // Calculate discount percentage if hasDiscount is true
+      const discountPercentage = formData.hasDiscount 
+        ? Math.round(
+            ((parseFloat(formData.price) - parseFloat(formData.discountPrice)) / 
+            parseFloat(formData.price)) * 100
+          )
+        : 0;
+
       // First create the document in Firestore to get its ID
       const docRef = await addDoc(collection(db, 'products'), {
         ...formData,
         price: parseFloat(formData.price),
         discountPrice: formData.hasDiscount ? parseFloat(formData.discountPrice) : parseFloat(formData.price),
+        discountPercentage, // Add the calculated discount percentage
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         imageUrl: '' // Will be updated after image upload
@@ -197,18 +207,14 @@ export default function AddProductForm() {
     }
   }
 
-  const removeImage = () => {
-    setSelectedFile(null)
-    setFormData(prev => ({ ...prev, imageUrl: '' }))
-    // Revoke the object URL to avoid memory leaks
-    if (formData.imageUrl.startsWith('blob:')) {
-      URL.revokeObjectURL(formData.imageUrl)
-    }
+  if (isLoading) {
+    return <LoadingSpinner fullScreen />
   }
 
   return (
     <div dir='rtl' className="min-h-screen bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mt-10 mx-auto">
+        <LogoutButton />
         <div className="text-center mb-8">
           <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
             اضافة منتج جديد

@@ -19,12 +19,12 @@ export default function LoginPage() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, redirect to admin
-        router.push('/admin')
+        router.push('/add-product')
       } else {
         // Also check Supabase session
         supabase.auth.getSession().then(({ data: { session } }) => {
           if (session) {
-            router.push('/admin')
+            router.push('/add-product')
           } else {
             setAuthChecking(false)
           }

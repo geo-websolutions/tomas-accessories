@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Home() {
   // Organized product data in an array
@@ -16,6 +17,7 @@ export default function Home() {
           price: 450,
           hasDiscount: true,
           discountPrice: 380,
+          discountPercentage: 16, // (450-380)/450*100 = 15.55% rounded
           description: "سوار أنيق من الفضة عيار 925 مرصع بأحجار الماس الصغيرة، تصميم كلاسيكي يناسب جميع المناسبات"
         },
         { 
@@ -24,6 +26,7 @@ export default function Home() {
           price: 650,
           hasDiscount: false,
           discountPrice: 650,
+          discountPercentage: 0,
           description: "سوار من الذهب الصيني عيار 18 قيراط بتصميم عصري أنيق، يتميز بمتانته ولمعانه الدائم"
         },
         { 
@@ -32,6 +35,7 @@ export default function Home() {
           price: 550,
           hasDiscount: true,
           discountPrice: 490,
+          discountPercentage: 11, // (550-490)/550*100 = 10.9% rounded
           description: "تحفة فنية تجمع بين الذهب والفضة في تصميم متناغم، قطعة فريدة تلفت الأنظار"
         }
       ]
@@ -46,6 +50,7 @@ export default function Home() {
           price: 350,
           hasDiscount: false,
           discountPrice: 350,
+          discountPercentage: 0,
           description: "أقراط من الفضة عيار 925 مع زخارف مرصعة بأحجار صغيرة، خفيفة الوزن ومريحة للارتداء"
         },
         { 
@@ -54,6 +59,7 @@ export default function Home() {
           price: 580,
           hasDiscount: true,
           discountPrice: 520,
+          discountPercentage: 10, // (580-520)/580*100 = 10.34% rounded
           description: "أقراط من الذهب الصيني عيار 18 قيراط بتصميم كلاسيكي أنيق، تضيف لمسة من البريق لإطلالتك"
         },
         { 
@@ -62,6 +68,7 @@ export default function Home() {
           price: 420,
           hasDiscount: true,
           discountPrice: 370,
+          discountPercentage: 12, // (420-370)/420*100 = 11.9% rounded
           description: "تصميم مبتكر يجمع بين الذهب والفضة في تناغم جميل، مناسب للارتداء اليومي والمناسبات"
         }
       ]
@@ -76,6 +83,7 @@ export default function Home() {
           price: 520,
           hasDiscount: false,
           discountPrice: 520,
+          discountPercentage: 0,
           description: "قلادة من الفضة عيار 925 مع نقشات يدوية دقيقة، قلادة مميزة تتناسب مع جميع الأذواق"
         },
         { 
@@ -84,6 +92,7 @@ export default function Home() {
           price: 780,
           hasDiscount: true,
           discountPrice: 700,
+          discountPercentage: 10, // (780-700)/780*100 = 10.25% rounded
           description: "قلادة من الذهب الصيني عيار 18 قيراط بتصميم عصري فاخر، قطعة مركزية تلفت الأنظار"
         },
         { 
@@ -92,6 +101,7 @@ export default function Home() {
           price: 620,
           hasDiscount: true,
           discountPrice: 550,
+          discountPercentage: 11, // (620-550)/620*100 = 11.29% rounded
           description: "تحفة فنية تجمع بين الذهب والفضة في تصميم متناسق، قلادة متعددة الاستخدامات"
         }
       ]
@@ -106,6 +116,7 @@ export default function Home() {
           price: 380,
           hasDiscount: true,
           discountPrice: 320,
+          discountPercentage: 16, // (380-320)/380*100 = 15.78% rounded
           description: "خاتم من الفضة عيار 925 بتصميم كلاسيكي أنيق، مناسب للرجال والنساء"
         },
         { 
@@ -114,6 +125,7 @@ export default function Home() {
           price: 680,
           hasDiscount: false,
           discountPrice: 680,
+          discountPercentage: 0,
           description: "خاتم من الذهب الصيني عيار 18 قيراط بتصميم عصري، قطعة فاخرة تدوم طويلاً"
         },
         { 
@@ -122,6 +134,7 @@ export default function Home() {
           price: 490,
           hasDiscount: true,
           discountPrice: 420,
+          discountPercentage: 14, // (490-420)/490*100 = 14.28% rounded
           description: "تصميم مبتكر يجمع بين الذهب والفضة في خاتم واحد، قطعة مميزة تناسب جميع المناسبات"
         }
       ]
@@ -129,7 +142,7 @@ export default function Home() {
   ];
 
   return (
-    <main dir="rtl" className="bg-gray-950 text-white font-sans overflow-x-hidden">
+    <main lang='ar' dir="rtl" className="bg-gray-950 text-white font-sans overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative h-screen w-full flex items-center justify-center text-center overflow-hidden">
         {/* Hero Image with responsive adjustments */}
@@ -286,7 +299,7 @@ export default function Home() {
                   {/* Discount Ribbon */}
                   {item.hasDiscount && (
                     <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full font-bold text-xs z-10 rotate-12 shadow-lg">
-                      خصم {Math.round(((item.price - item.discountPrice) / item.price) * 100)}%
+                      خصم {item.discountPercentage}%
                     </div>
                   )}
 
