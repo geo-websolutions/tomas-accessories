@@ -1,5 +1,6 @@
 export const metadata = {
-  title: 'Tomas Silver & Accessories | منتجاتنا الفاخرة',
+  metadataBase: new URL('https://tomas-accessories.vercel.app/'),
+  title: 'Tomas Silver & Accessories |  Male Accessories',
   description: 'اكتشف تشكيلتنا الحصرية من الذهب الصيني والفضة عيار 925. قلادات، خواتم، أقراط وأساور بتصاميم فريدة تناسب كل الأذواق.',
   keywords: [
     'ذهب صيني',
@@ -15,14 +16,14 @@ export const metadata = {
   ],
   openGraph: {
     type: 'website',
-    url: '/products',
+    url: '/products-male',
     title: 'توماس للذهب الصيني والفضة | تشكيلة المنتجات',
     description: 'تصفح مجموعتنا المتميزة من الذهب الصيني والفضة عيار 925 بأفضل الأسعار وجودة التصنيع',
     images: [
       {
-        url: '/assets/images/products-showcase.jpg', // Replace with actual image path
-        width: 1200,
-        height: 630,
+        url: '/assets/icons/logo.png',
+        width: 500,
+        height: 200,
         alt: 'تشكيلة منتجات توماس من الذهب الصيني والفضة',
       },
     ],
@@ -32,7 +33,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'توماس للذهب الصيني والفضة | تشكيلة المنتجات',
     description: 'تصفح مجموعتنا المتميزة من الذهب الصيني والفضة عيار 925 بأفضل الأسعار وجودة التصنيع',
-    images: ['/assets/images/products-showcase.jpg'], // Replace with actual image path
+    images: ['/assets/icons/logo.png'],
   },
   alternates: {
     canonical: '/products',

@@ -9,7 +9,7 @@ export const metadata = {
   },
   openGraph: {
     type: 'website',
-    url: '',
+    url: '/assets/icons/logo.png',
     title: 'Tomas Silver & Accessories',
     description: 'اكتشف مجموعتنا الفريدة من الاكسسوارات المصنوعة من الذهب الصينى و الفضة عيار 925.',
     images: [
@@ -26,7 +26,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Tomas Silver & Accessories',
     description: 'اكتشف مجموعتنا الفريدة من الاكسسوارات المصنوعة من الذهب الصينى و الفضة عيار 925.',
-    images: [''],
+    images: ['/assets/icons/logo.png'],
   },
 }
 
