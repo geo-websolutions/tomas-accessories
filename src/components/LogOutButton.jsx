@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation';
-import { signOut } from '@/lib/auth';
+import { signOut } from '@/lib/authSingOut';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { LoadingSpinner } from './LoadingSpinner';

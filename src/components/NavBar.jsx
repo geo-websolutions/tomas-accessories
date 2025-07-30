@@ -19,33 +19,39 @@ const NavBar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // const navLinks = [
+  //   { name: 'الرئيسية', path: '/' },
+  //   { 
+  //     name: 'المنتجات', 
+  //     path: '/products',
+  //     subItems: [
+  //       { name: 'القلادات', path: '/products/necklaces' },
+  //       { name: 'الخواتم', path: '/products/rings' },
+  //       { name: 'الأقراط', path: '/products/earrings' },
+  //       { name: 'الأساور', path: '/products/bracelets' }
+  //     ]
+  //   },
+  //   { name: 'تواصل معنا', path: '/contact' }
+  // ];
+
   const navLinks = [
     { name: 'الرئيسية', path: '/' },
-    { 
-      name: 'المنتجات', 
-      path: '/products',
-      subItems: [
-        { name: 'القلادات', path: '/products/necklaces' },
-        { name: 'الخواتم', path: '/products/rings' },
-        { name: 'الأقراط', path: '/products/earrings' },
-        { name: 'الأساور', path: '/products/bracelets' }
-      ]
-    },
+    { name: 'للنساء', path: 'products-female' },
+    { name: 'للرجال', path: 'products-male' },
     { name: 'تواصل معنا', path: '/contact' }
   ];
 
-  const isActive = (href, subItems = []) => {
-    const isBaseActive = href === "/" 
-      ? pathname === "/" 
-      : pathname === href || pathname.startsWith(`${href}/`);
+  const isActive = (href) => {
+    // Special case for home page
+    if (href === "/") {
+      return pathname === "/";
+    }
     
-    const isSubItemActive = subItems.some(subItem => 
-      pathname === subItem.path || pathname.startsWith(`${subItem.path}/`)
-    );
-
-    return isBaseActive || isSubItemActive;
+    // For other paths, check if current path matches or starts with the href
+    // Also handle the case where pathname might have a leading slash
+    const normalizedHref = href.startsWith('/') ? href : `/${href}`;
+    return pathname === normalizedHref || pathname.startsWith(`${normalizedHref}/`);
   };
-
   return (
     <nav dir="rtl" className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-gray-900/95 backdrop-blur-md py-3 border-b border-gray-800' : 'bg-gray-900/80 backdrop-blur-sm py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -63,6 +69,7 @@ const NavBar = () => {
               width={500}
               height={200}
               className="w-auto h-10"
+              priority
             />
           </motion.div>
         </Link>
